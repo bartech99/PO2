@@ -6,7 +6,8 @@ namespace PO2
     {
         static void Main(string[] args)
         {
-            //
+            Car car = new Car();
+            Console.WriteLine(car.Brand);
         }
     }
 }

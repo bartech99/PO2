@@ -47,6 +47,7 @@ namespace Handling
             catch 
             { 
                 WriteCol("Zly format", "R");
+                choise = 0;
                 PressEnter();
             }
             Console.ResetColor();

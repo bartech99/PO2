@@ -1,35 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Handling;
 
-namespace PO2
+namespace CarsData
 {
+    //Zawiera dane określające pojedynczy samochód
     class Car
     {
         private string brand;
         private string model;
-        private uint year;
-        private uint capacity;
-        private uint milleage;
+        private int year;
+        private int capacity;
+        private int milleage;
         private string gearbox;
+
+        public bool correct = true;
 
         public string Brand
         {
             get => brand;
             set
             {
-                if (value == "Alfa Romeo" || value == "Audi" || value == "Bentley"
-                    || value == "BMW" || value == "Bugatti" || value == "Chevrolet"
-                    || value == "Crysler" || value == "Citroen" || value == "Dacia"
-                    || value == "Dodge" || value == "Ferrari" || value == "Fiat"
-                    || value == "Ford" || value == "Hyundai" || value == "Jaguar"
-                    || value == "Jeep" || value == "Lamborghini" || value == "Land Rover"
-                    || value == "Łada")
+                if (value == "Alfa Romeo" || value == "Aston Martin" || value == "Audi" || value == "Bentley"
+                    || value == "BMW" || value == "Bugatti" || value == "Buick" || value == "Cadillac"
+                    || value == "Chevrolet" || value == "Crysler" || value == "Citroen" || value == "Dacia"
+                    || value == "Daewoo" || value == "DAF" || value == "Daihatsu" || value == "Dodge"
+                    || value == "Ferrari" || value == "Fiat" || value == "Ford" || value == "FSO" || value == "Honda"
+                    || value == "Hyundai" || value == "Inifnity" || value == "Iveco" || value == "Jaguar"
+                    || value == "Jeep" || value == "KIA" || value == "Lamborghini" || value == "Land Rover"
+                    || value == "Lexus" || value == "Maserati" || value == "Maybach" || value == "Mazda"
+                    || value == "McLaren" || value == "Mercedes" || value == "Mini" || value == "Mitsubishi"
+                    || value == "Nissan" || value == "Opel" || value == "Peugeot" || value == "Porshe"
+                    || value == "Renault" || value == "Rolls Royce" || value == "Rover" || value == "SAAB"
+                    || value == "Scania" || value == "Seat" || value == "Skoda" || value == "Smart"
+                    || value == "Subaru" || value == "Suzuki" || value == "Tesla" || value == "Toyota"
+                    || value == "Volkswagen" || value == "Volvo")
                 {
                     try { brand = value; }
-                    catch { Console.WriteLine("Zly format!"); }
+                    catch 
+                    {
+                        correct = false;
+                        brand = "brak";
+                        Menu.WriteCol("Zly format!", "R");
+                    }
                 }
-                else { Console.WriteLine("Niepoprawna nazwa marki!"); }
+                else
+                {
+                    correct = false;
+                    brand = "brak";
+                    Menu.WriteCol($"Niepoprawna nazwa marki: {value}!", "DY");
+                }
             }
         }
         public string Model
@@ -38,34 +59,81 @@ namespace PO2
             set
             {
                 try { model = value; }
-                catch { Console.WriteLine("Niepoprawny model!"); }
+                catch 
+                {
+                    correct = false;
+                    model = "brak";
+                    Menu.WriteCol($"Niepoprawny model: {value}!", "R");
+                }
             }
         }
-        public uint Year
+        public int Year
         {
             get => year;
             set
             {
-                try { year = value; }
-                catch { Console.WriteLine("Niepoprawny rok produkcji!"); }
+                if (value > 1950 && value < 2020)
+                {
+                    try { year = value; }
+                    catch
+                    {
+                        correct = false;
+                        year = 0;
+                        Menu.WriteCol($"Niepoprawny rok produkcji: {value}!", "R");
+                    }
+                }
+                else
+                {
+                    correct = false;
+                    year = 0;
+                    Menu.WriteCol($"Niepoprawny rok produkcji: {value}!", "DY");
+                }
             }
         }
-        public uint Capacity
+        public int Capacity
         {
             get => capacity;
             set
             {
-                try { capacity = value; }
-                catch { Console.WriteLine("Niepoprawna pojemnosc silnika!"); }
+                if (value >= 330)
+                {
+                    try { capacity = value; }
+                    catch
+                    {
+                        correct = false;
+                        capacity = 0;
+                        Menu.WriteCol($"Niepoprawna pojemnosc silnika: {value}!", "R");
+                    }
+                }
+                else
+                {
+                    correct = false;
+                    capacity = 0;
+                    Menu.WriteCol($"Niepoprawna pojemnosc silnika: {value}!", "DY");
+                }
             }
         }
-        public uint Milleage
+        public int Milleage
         {
             get => milleage;
             set
             {
-                try { milleage = value; }
-                catch { Console.WriteLine("Niepoprawny przebieg!"); }
+                if (value > 0)
+                {
+                    try { milleage = value; }
+                    catch
+                    {
+                        correct = false;
+                        milleage = 0;
+                        Menu.WriteCol($"Niepoprawny przebieg: {value}!", "R");
+                    }
+                }
+                else
+                {
+                    correct = false;
+                    milleage = 0;
+                    Menu.WriteCol($"Niepoprawny przebieg: {value}!", "DY");
+                }
             }
         }
         public string Gearbox
@@ -76,13 +144,23 @@ namespace PO2
                 if (value == "automatyczna" || value == "manualna")
                 {
                     try { gearbox = value; }
-                    catch { Console.WriteLine("Zly format!"); }
+                    catch
+                    {
+                        correct = false;
+                        gearbox = "brak";
+                        Menu.WriteCol($"Zly format: {value}!", "R");
+                    }
                 }
-                else { Console.WriteLine("Niepoprawny typ skrzyni biegow!"); }
+                else 
+                {
+                    correct = false;
+                    gearbox = "brak";
+                    Menu.WriteCol($"Niepoprawny typ skrzyni biegow: {value}!", "R");
+                }
             }
         }
 
-        public Car(string brand = "brak", string model = "brak", uint year = 0, uint capacity = 0, uint milleage = 0, string gearbox = "brak")
+        public Car(string brand = "brak", string model = "brak", int year = 0, int capacity = 0, int milleage = 0, string gearbox = "brak")
         {
             this.brand = brand;
             this.model = model;
@@ -90,6 +168,11 @@ namespace PO2
             this.capacity = capacity;
             this.milleage = milleage;
             this.gearbox = gearbox;
+        }
+        public override string ToString()
+        {
+            return brand.ToString() + "\t" + model.ToString() + "\t" + year.ToString() + "\t" + capacity.ToString() + "\t" 
+                + milleage.ToString() + "\t" + gearbox.ToString();
         }
     }
 }

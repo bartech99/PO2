@@ -16,16 +16,15 @@ namespace Handling
                 else
                 {
                     choise = 0;
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.WriteLine("Niepoprawny wybor!");
-                    PressEnter();
+                    Support.WriteCol("Niepoprawny wybor!", "DY");
+                    Support.PressEnter();
                 }
             }
         }
 
         public int MainList()
         {
-            WriteCol("--- MENU ---", "G");
+            Support.WriteCol("--- MENU ---", "G");
             Console.WriteLine();
             Console.WriteLine("1. Wczytaj z pliku");
             Console.WriteLine("2. Zapisz wyniki w nowym pliku");
@@ -46,34 +45,48 @@ namespace Handling
             try { Choise = int.Parse(Console.ReadLine()); }
             catch 
             { 
-                WriteCol("Zly format", "R");
+                Support.WriteCol("Zly format", "R");
                 choise = 0;
-                PressEnter();
+                Support.PressEnter();
             }
             Console.ResetColor();
             Console.Clear();
             return choise;
         }
 
-        public void PressEnter()
+        public int ConditionalList()
         {
+            Support.WriteCol("--- MENU WARUNKOW ---", "G");
             Console.WriteLine();
-            WriteCol("Nacisnij ENTER, aby kontynuowac", "G");
-            Console.ReadKey();
-            Console.Clear();
+            Console.WriteLine("Wyswietl wedlug:");
+            Console.WriteLine("1. Marki");
+            Console.WriteLine("2. Roku produkcji");
+            Console.WriteLine("3. Pojemnosci silnika");
+            Console.WriteLine("4. Przebiegu");
+            Console.WriteLine("5. Rodzaju skrzyni biegów");
+            Console.WriteLine();
+
+            do
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("Twoj wybor: ");
+
+                try { Choise = int.Parse(Console.ReadLine()); }
+                catch
+                {
+                    Support.WriteCol("Zly format!", "R");
+                    choise = 0;
+                    Support.PressEnter();
+                }
+                Console.Clear();
+
+                if(choise < 1 || choise > 5) { Support.WriteCol("Niepoprawny wybor", "DY"); }
+
+            } while (choise < 1 || choise > 5);
+            
+            return choise;
         }
-
-
-
-        public static void WriteCol(string text, string colour)
-        {
-            if (colour == "G") { Console.ForegroundColor = ConsoleColor.Green; }
-            else if (colour == "R") { Console.ForegroundColor = ConsoleColor.Red; }
-            else { Console.ForegroundColor = ConsoleColor.DarkYellow; }
-            Console.WriteLine(text);
-            Console.ResetColor();
-        }
-
+        
 
 
         public Menu(int choise = 0)

@@ -42,14 +42,14 @@ namespace CarsData
                     {
                         correct = false;
                         brand = "brak";
-                        Menu.WriteCol("Zly format!", "R");
+                        Support.WriteCol("Zly format!", "R");
                     }
                 }
                 else
                 {
                     correct = false;
                     brand = "brak";
-                    Menu.WriteCol($"Niepoprawna nazwa marki: {value}!", "DY");
+                    Support.WriteCol($"Niepoprawna nazwa marki: {value}!", "DY");
                 }
             }
         }
@@ -63,7 +63,7 @@ namespace CarsData
                 {
                     correct = false;
                     model = "brak";
-                    Menu.WriteCol($"Niepoprawny model: {value}!", "R");
+                    Support.WriteCol($"Niepoprawny model: {value}!", "R");
                 }
             }
         }
@@ -79,14 +79,14 @@ namespace CarsData
                     {
                         correct = false;
                         year = 0;
-                        Menu.WriteCol($"Niepoprawny rok produkcji: {value}!", "R");
+                        Support.WriteCol($"Niepoprawny rok produkcji: {value}!", "R");
                     }
                 }
                 else
                 {
                     correct = false;
                     year = 0;
-                    Menu.WriteCol($"Niepoprawny rok produkcji: {value}!", "DY");
+                    Support.WriteCol($"Niepoprawny rok produkcji: {value}!", "DY");
                 }
             }
         }
@@ -102,14 +102,14 @@ namespace CarsData
                     {
                         correct = false;
                         capacity = 0;
-                        Menu.WriteCol($"Niepoprawna pojemnosc silnika: {value}!", "R");
+                        Support.WriteCol($"Niepoprawna pojemnosc silnika: {value}!", "R");
                     }
                 }
                 else
                 {
                     correct = false;
                     capacity = 0;
-                    Menu.WriteCol($"Niepoprawna pojemnosc silnika: {value}!", "DY");
+                    Support.WriteCol($"Niepoprawna pojemnosc silnika: {value}!", "DY");
                 }
             }
         }
@@ -125,14 +125,14 @@ namespace CarsData
                     {
                         correct = false;
                         milleage = 0;
-                        Menu.WriteCol($"Niepoprawny przebieg: {value}!", "R");
+                        Support.WriteCol($"Niepoprawny przebieg: {value}!", "R");
                     }
                 }
                 else
                 {
                     correct = false;
                     milleage = 0;
-                    Menu.WriteCol($"Niepoprawny przebieg: {value}!", "DY");
+                    Support.WriteCol($"Niepoprawny przebieg: {value}!", "DY");
                 }
             }
         }
@@ -148,14 +148,14 @@ namespace CarsData
                     {
                         correct = false;
                         gearbox = "brak";
-                        Menu.WriteCol($"Zly format: {value}!", "R");
+                        Support.WriteCol($"Zly format: {value}!", "R");
                     }
                 }
                 else 
                 {
                     correct = false;
                     gearbox = "brak";
-                    Menu.WriteCol($"Niepoprawny typ skrzyni biegow: {value}!", "R");
+                    Support.WriteCol($"Niepoprawny typ skrzyni biegow: {value}!", "R");
                 }
             }
         }

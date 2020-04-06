@@ -10,9 +10,7 @@ namespace CarsData
     {
         //wektor
         private List<Car> list = new List<Car>();
-
-
-
+        
         //metody
         public void Add()
         {
@@ -52,24 +50,14 @@ namespace CarsData
             if (c.correct)
             {
                 try { list.Add(c); }
-                catch
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Blad zapisu w wektorze!");
-                    Console.ResetColor();
-                }
+                catch { Support.WriteCol("Blad zapisu w wektorze!", "R"); }
             }
         }
 
         public void PrintOne(int i)
         {
             try { Console.WriteLine(list[i].ToString()); }
-            catch 
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Próba odczytu wartosci wykraczajacej poza wektor!");
-                Console.ResetColor();
-            }
+            catch { Support.WriteCol("Próba odczytu wartosci wykraczajacej poza wektor!", "R"); }
         }
 
         public void PrintAll()

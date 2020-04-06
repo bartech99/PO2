@@ -10,6 +10,7 @@ namespace PO2
         {
             Menu menu = new Menu();
             Cars cars = new Cars();
+            File file = new File();
 
             while (menu.MainList() != 9)
             {
@@ -19,47 +20,66 @@ namespace PO2
                     {
                         case 1:
 
-                            Menu.WriteCol("--- a ---", "G");
+                            Support.WriteCol("--- Wczytywanie z pliku ---", "G");
+                            Console.WriteLine();
+                            Console.Write("Podaj nazwe pliku: ");
+                            if (file.Read(Console.ReadLine())) { Console.WriteLine("Wczytano dane"); }
+                            else { Support.WriteCol("Niepowodzenie", "DY"); }
                             break;
 
                         case 2:
 
-                            Menu.WriteCol("--- a ---", "G");
+                            Support.WriteCol("--- Zapis do pliku ---", "G");
+                            Console.WriteLine();
+                            Console.Write("Podaj nazwe pliku: ");
+                            if (file.Save(Console.ReadLine())) { Console.WriteLine("Zapisano dane"); }
+                            else { Support.WriteCol("Niepowodzenie", "DY"); }
                             break;
 
                         case 3:
 
-                            Menu.WriteCol("--- a ---", "G");
+                            Support.WriteCol("--- Dodawanie samochodu do bazy ---", "G");
                             cars.Add();
                             break;
 
                         case 4:
 
-                            Menu.WriteCol("--- a ---", "G");
+                            Support.WriteCol("--- Usuwanie samochodu z bazy ---", "G");
+                            Console.WriteLine();
+                            Console.WriteLine("- Marka - Model - Rok produkcji - Pojemnosc - Przebieg - Typ skrzyni biegow -");
                             break;
 
                         case 5:
 
-                            Menu.WriteCol("--- a ---", "G");
+                            Support.WriteCol("--- Wszystkie samochody ---", "G");
+                            Console.WriteLine();
+                            Console.WriteLine("- Marka - Model - Rok produkcji - Pojemnosc - Przebieg - Typ skrzyni biegow -");
                             cars.PrintAll();
                             break;
 
                         case 6:
 
-                            Menu.WriteCol("--- a ---", "G");
+                            menu.ConditionalList();
+                            Support.WriteCol("--- Warunowa lista samochodow ---", "G");
+                            Console.WriteLine();
+                            Console.WriteLine("- Marka - Model - Rok produkcji - Pojemnosc - Przebieg - Typ skrzyni biegow -");
                             break;
 
                         case 7:
 
-                            Menu.WriteCol("--- a ---", "G");
+                            Support.WriteCol("--- Wyszukiwanie samochodu ---", "G");
+                            Console.WriteLine();
+                            Console.WriteLine("- Marka - Model - Rok produkcji - Pojemnosc - Przebieg - Typ skrzyni biegow -");
                             break;
 
                         case 8:
 
-                            Menu.WriteCol("--- a ---", "G");
+                            Support.WriteCol("--- Posortowana lista samochodow ---", "G");
+                            Console.WriteLine();
+                            Console.WriteLine("- Marka - Model - Rok produkcji - Pojemnosc - Przebieg - Typ skrzyni biegow -");
                             break;
                     }
-                    menu.PressEnter();
+                    Support.PressEnter();
                 }
             }
         }

@@ -11,6 +11,7 @@ namespace Handling
         {
             title = CheckTitle(title);
             Console.WriteLine(title);
+            //
             return true;
         }
 
@@ -18,6 +19,7 @@ namespace Handling
         {
             title = CheckTitle(title);
             Console.WriteLine(title);
+            //
             return true;
         }
 

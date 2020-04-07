@@ -37,7 +37,10 @@ namespace CarsData
                     || value == "Subaru" || value == "Suzuki" || value == "Tesla" || value == "Toyota"
                     || value == "Volkswagen" || value == "Volvo")
                 {
-                    try { brand = value; }
+                    try 
+                    { 
+                        brand = value; 
+                    }
                     catch 
                     {
                         correct = false;
@@ -53,12 +56,16 @@ namespace CarsData
                 }
             }
         }
+
         public string Model
         {
             get => model;
             set
             {
-                try { model = value; }
+                try 
+                { 
+                    model = value; 
+                }
                 catch 
                 {
                     correct = false;
@@ -67,14 +74,18 @@ namespace CarsData
                 }
             }
         }
+
         public int Year
         {
             get => year;
             set
             {
-                if (value > 1950 && value < 2020)
+                if (value > 1950 && value <= 2020)
                 {
-                    try { year = value; }
+                    try 
+                    { 
+                        year = value; 
+                    }
                     catch
                     {
                         correct = false;
@@ -90,6 +101,7 @@ namespace CarsData
                 }
             }
         }
+
         public int Capacity
         {
             get => capacity;
@@ -97,7 +109,10 @@ namespace CarsData
             {
                 if (value >= 330)
                 {
-                    try { capacity = value; }
+                    try 
+                    { 
+                        capacity = value; 
+                    }
                     catch
                     {
                         correct = false;
@@ -113,6 +128,7 @@ namespace CarsData
                 }
             }
         }
+
         public int Milleage
         {
             get => milleage;
@@ -120,7 +136,10 @@ namespace CarsData
             {
                 if (value > 0)
                 {
-                    try { milleage = value; }
+                    try 
+                    { 
+                        milleage = value; 
+                    }
                     catch
                     {
                         correct = false;
@@ -136,6 +155,7 @@ namespace CarsData
                 }
             }
         }
+
         public string Gearbox
         {
             get => gearbox;
@@ -143,7 +163,10 @@ namespace CarsData
             {
                 if (value == "automatyczna" || value == "manualna")
                 {
-                    try { gearbox = value; }
+                    try 
+                    { 
+                        gearbox = value; 
+                    }
                     catch
                     {
                         correct = false;
@@ -169,6 +192,7 @@ namespace CarsData
             this.milleage = milleage;
             this.gearbox = gearbox;
         }
+
         public override string ToString()
         {
             return brand.ToString() + "\t" + model.ToString() + "\t" + year.ToString() + "\t" + capacity.ToString() + "\t" 

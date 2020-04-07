@@ -71,7 +71,10 @@ namespace Handling
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("Twoj wybor: ");
 
-                try { Choise = int.Parse(Console.ReadLine()); }
+                try 
+                { 
+                    Choise = int.Parse(Console.ReadLine()); 
+                }
                 catch
                 {
                     Support.WriteCol("Zly format!", "R");
@@ -80,7 +83,10 @@ namespace Handling
                 }
                 Console.Clear();
 
-                if(choise < 1 || choise > 5) { Support.WriteCol("Niepoprawny wybor", "DY"); }
+                if(choise < 1 || choise > 5) 
+                { 
+                    Support.WriteCol("Niepoprawny wybor", "DY"); 
+                }
 
             } while (choise < 1 || choise > 5);
             

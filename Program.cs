@@ -10,7 +10,9 @@ namespace PO2
         {
             Menu menu = new Menu();
             Cars cars = new Cars();
-            File file = new File();
+            FileSupport file = new FileSupport();
+
+            bool ifData = false;
 
             while (menu.MainList() != 9)
             {
@@ -22,18 +24,16 @@ namespace PO2
 
                             Support.WriteCol("--- Wczytywanie z pliku ---", "G");
                             Console.WriteLine();
-                            Console.Write("Podaj nazwe pliku: ");
-                            if (file.Read(Console.ReadLine())) { Console.WriteLine("Wczytano dane"); }
-                            else { Support.WriteCol("Niepowodzenie", "DY"); }
+                            file.GetTitle();
+                            ifData = file.Read(cars);//dodać pytanie czy opróżnić wektor
                             break;
 
                         case 2:
 
                             Support.WriteCol("--- Zapis do pliku ---", "G");
                             Console.WriteLine();
-                            Console.Write("Podaj nazwe pliku: ");
-                            if (file.Save(Console.ReadLine())) { Console.WriteLine("Zapisano dane"); }
-                            else { Support.WriteCol("Niepowodzenie", "DY"); }
+                            file.GetTitle();
+                            file.Save(cars);//dodać weryfikację
                             break;
 
                         case 3:

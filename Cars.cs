@@ -9,7 +9,7 @@ namespace CarsData
     class Cars
     {
         //wektor
-        private List<Car> list = new List<Car>();
+        public List<Car> list = new List<Car>();
         
         //metody
         public void Add()
@@ -49,15 +49,32 @@ namespace CarsData
 
             if (c.correct)
             {
-                try { list.Add(c); }
-                catch { Support.WriteCol("Blad zapisu w wektorze!", "R"); }
+                Push(c);
+            }
+        }
+
+        public void Push(Car c)
+        {
+            try
+            {
+                list.Add(c);
+            }
+            catch
+            {
+                Support.WriteCol("Blad zapisu w wektorze!", "R");
             }
         }
 
         public void PrintOne(int i)
         {
-            try { Console.WriteLine(list[i].ToString()); }
-            catch { Support.WriteCol("Próba odczytu wartosci wykraczajacej poza wektor!", "R"); }
+            try 
+            { 
+                Console.WriteLine(list[i].ToString()); 
+            }
+            catch 
+            { 
+                Support.WriteCol("Próba odczytu wartosci wykraczajacej poza wektor!", "R"); 
+            }
         }
 
         public void PrintAll()

@@ -16,9 +16,18 @@ namespace Handling
         
         public static void WriteCol(string text, string colour)
         {
-            if (colour == "G") { Console.ForegroundColor = ConsoleColor.Green; }
-            else if (colour == "R") { Console.ForegroundColor = ConsoleColor.Red; }
-            else { Console.ForegroundColor = ConsoleColor.DarkYellow; }
+            if (colour == "G") 
+            { 
+                Console.ForegroundColor = ConsoleColor.Green; 
+            }
+            else if (colour == "R") 
+            { 
+                Console.ForegroundColor = ConsoleColor.Red; 
+            }
+            else 
+            { 
+                Console.ForegroundColor = ConsoleColor.DarkYellow; 
+            }
             Console.WriteLine(text);
             Console.ResetColor();
         }

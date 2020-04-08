@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
-using System.Threading.Tasks;
 using CarsData;
-using System.Linq;
 
 namespace Handling
 {
@@ -39,10 +35,10 @@ namespace Handling
             }
             catch
             {
-                Support.WriteCol("Podany plik nie istnieje!", "R");
+                Support.WriteCol("Blad pliku!", "R");
                 return false;
             }
-            Console.WriteLine("Pomyslnie odczytano dane");
+            Console.WriteLine("Pomyslnie odczytano dane.");
             return true;
         }
 
@@ -54,35 +50,17 @@ namespace Handling
             if (File.Exists(title))
             {
                 Console.WriteLine("Plik o podanej nazwie istnieje.");
-                Console.Write("Wprowadz 1 - aby go nadpisac, 2 - aby dopisac linie: ");
-                while (true)
+                Console.WriteLine("0 - aby go nadpisac, 1 - aby dopisac linie");
+                mode = Menu.GetChoise(0, 1);
+                
+                if (mode == 0)
                 {
-                    try
-                    {
-                        mode = int.Parse(Console.ReadLine());
-
-                        if (mode == 1)
-                        {
-                            File.Delete(title);
-                            append = false;
-                            break;
-                        }
-                        else if (mode == 2)
-                        {
-                            append = true;
-                            break;
-                        }
-                        else
-                        {
-                            Support.WriteCol("Niepoprawna wartosc!", "DY");
-                            Console.Write("Twoj wybor: ");
-                        }
-                    }
-                    catch
-                    {
-                        Support.WriteCol("Niepoprawna wartosc!", "R");
-                        Console.Write("Twoj wybor: ");
-                    }
+                    File.Delete(title);
+                    append = false;
+                }
+                else
+                {
+                    append = true;
                 }
             }
             else
@@ -100,17 +78,17 @@ namespace Handling
                     }
                     catch
                     {
-                        Support.WriteCol("Operacja nie powiodla sie", "R");
+                        Support.WriteCol("Operacja nie powiodla sie!", "R");
                         return false;
                     }
                 }
             }
 
-            Console.WriteLine("Pomyslnie zapisano dane");
+            Console.WriteLine("Pomyslnie zapisano dane.");
             return true;
         }
 
-        public bool GetTitle()
+        public string GetTitle()
         {
             string end;
 
@@ -131,7 +109,7 @@ namespace Handling
             catch 
             { 
                 title = $"../../../{title}.txt";
-                return true; 
+                return title; 
             }
 
             if (!end.Equals(".txt", StringComparison.OrdinalIgnoreCase)) 
@@ -141,7 +119,7 @@ namespace Handling
 
             title = $"../../../{title}";
 
-            return true;
+            return title;
         }
     }
 }

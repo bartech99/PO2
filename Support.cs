@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using CarsData;
 
 namespace Handling
 {
@@ -30,6 +29,44 @@ namespace Handling
             }
             Console.WriteLine(text);
             Console.ResetColor();
+        }
+
+        public static void Clear(Cars c)
+        {
+            if (c.list.Count != 0)
+            {
+                string choise;
+
+                Console.WriteLine("Baza danych programu zawiera juz dane. Czy chcesz je skasowac?");
+
+                while (true)
+                {
+                    try
+                    {
+                        Console.Write("y - tak, n - nie: ");
+                        choise = Console.ReadLine();
+
+                        if (choise[0] == 'y')
+                        {
+                            c.list.Clear();
+                            Console.WriteLine("Baza danych zostala oprozniona.");
+                            break;
+                        }
+                        else if (choise[0] == 'n')
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            Support.WriteCol("Niepoprawna wartosc!", "DY");
+                        }
+                    }
+                    catch
+                    {
+                        Support.WriteCol("Niepoprawna wartosc!", "R");
+                    }
+                }
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Handling;
 using CarsData;
+using System.IO;
 
 namespace PO2
 {
@@ -8,79 +9,119 @@ namespace PO2
     {
         static void Main(string[] args)
         {
-            Menu menu = new Menu();
             Cars cars = new Cars();
             FileSupport file = new FileSupport();
 
             bool ifData = false;
 
-            while (menu.MainList() != 9)
+            while (true)
             {
-                if (menu.Choise != 0)
+                switch (Menu.MainList())
                 {
-                    switch (menu.Choise)
-                    {
-                        case 1:
+                    case 1:
 
-                            Support.WriteCol("--- Wczytywanie z pliku ---", "G");
-                            Console.WriteLine();
+                        Support.WriteCol("--- Wczytywanie z pliku ---", "G");
+                        Console.WriteLine();
+
+                        if (File.Exists(file.GetTitle()))
+                        {
+                            Support.Clear(cars);
+                        }
+                        ifData = file.Read(cars);
+
+                        break;
+
+                    case 2:
+
+                        Support.WriteCol("--- Zapis do pliku ---", "G");
+                        Console.WriteLine();
+                        if (ifData)
+                        {
                             file.GetTitle();
-                            ifData = file.Read(cars);//dodać pytanie czy opróżnić wektor
-                            break;
+                            file.Save(cars);
+                        }
+                        else
+                        {
+                            Support.WriteCol("Brak danych w bazie do zapisania", "DY");
+                        }
+                        break;
 
-                        case 2:
+                    case 3:
 
-                            Support.WriteCol("--- Zapis do pliku ---", "G");
-                            Console.WriteLine();
-                            file.GetTitle();
-                            file.Save(cars);//dodać weryfikację
-                            break;
+                        Support.WriteCol("--- Dodawanie samochodu do bazy ---", "G");
+                        Console.WriteLine();
+                        cars.Add();
+                        ifData = true;
+                        break;
 
-                        case 3:
+                    case 4: 
 
-                            Support.WriteCol("--- Dodawanie samochodu do bazy ---", "G");
-                            cars.Add();
-                            break;
+                        Support.WriteCol("--- Usuwanie samochodu z bazy ---", "G");
+                        Console.WriteLine();
+                        if (ifData)
+                        {
+                            cars.Remove(cars.Search());
+                        }
+                        else
+                        {
+                            Support.WriteCol("Brak danych w bazie", "DY");
+                        }
+                        break;
 
-                        case 4:
+                    case 5:
 
-                            Support.WriteCol("--- Usuwanie samochodu z bazy ---", "G");
-                            Console.WriteLine();
-                            Console.WriteLine("- Marka - Model - Rok produkcji - Pojemnosc - Przebieg - Typ skrzyni biegow -");
-                            break;
+                        Support.WriteCol("--- Wszystkie samochody ---", "G");
+                        Console.WriteLine();
+                        cars.PrintAll();
+                        break;
 
-                        case 5:
+                    case 6:
 
-                            Support.WriteCol("--- Wszystkie samochody ---", "G");
-                            Console.WriteLine();
-                            Console.WriteLine("- Marka - Model - Rok produkcji - Pojemnosc - Przebieg - Typ skrzyni biegow -");
-                            cars.PrintAll();
-                            break;
+                        Support.WriteCol("--- Warunowa lista samochodow ---", "G");
+                        Console.WriteLine();
+                        if(ifData)
+                        {
+                            cars.PrintConditional(Menu.ConditionalList());
+                        }
+                        else
+                        {
+                            Support.WriteCol("Brak danych w bazie", "DY");
+                        }
+                        break;
 
-                        case 6:
+                    case 7:
 
-                            menu.ConditionalList();
-                            Support.WriteCol("--- Warunowa lista samochodow ---", "G");
-                            Console.WriteLine();
-                            Console.WriteLine("- Marka - Model - Rok produkcji - Pojemnosc - Przebieg - Typ skrzyni biegow -");
-                            break;
+                        Support.WriteCol("--- Wyszukiwanie samochodu ---", "G");
+                        Console.WriteLine();
+                        if (ifData)
+                        {
+                            cars.Search();
+                        }
+                        else
+                        {
+                            Support.WriteCol("Brak danych w bazie", "DY");
+                        }
+                        break;
 
-                        case 7:
+                    case 8:
 
-                            Support.WriteCol("--- Wyszukiwanie samochodu ---", "G");
-                            Console.WriteLine();
-                            Console.WriteLine("- Marka - Model - Rok produkcji - Pojemnosc - Przebieg - Typ skrzyni biegow -");
-                            break;
+                        Support.WriteCol("--- Posortowana lista samochodow ---", "G");
+                        Console.WriteLine();
+                        if (ifData)
+                        {
+                            cars.PrintSorted(Menu.SortingList(), Menu.SortingDeOrIn());
+                        }
+                        else
+                        {
+                            Support.WriteCol("Brak danych w bazie", "DY");
+                        }
+                        break;
+                    
+                    case 9:
 
-                        case 8:
-
-                            Support.WriteCol("--- Posortowana lista samochodow ---", "G");
-                            Console.WriteLine();
-                            Console.WriteLine("- Marka - Model - Rok produkcji - Pojemnosc - Przebieg - Typ skrzyni biegow -");
-                            break;
-                    }
-                    Support.PressEnter();
+                        return;
                 }
+                Support.PressEnter();
             }
         }
     }

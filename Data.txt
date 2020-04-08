@@ -1,0 +1,7 @@
+Fiat	Tipo	2018	1398	31000	manualna
+BMW	X5	2013	3499	70000	manualna
+Opel	Vectra	2010	1998	151000	automatyczna
+Citroen	C3	2005	1598	190000	manualna
+BMW	X5	2019	3197	5000	automatyczna
+Opel	Vectra	2003	1998	250000	automatyczna
+Nissan	Micra	2009	1798	78000	manualna

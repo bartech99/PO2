@@ -1,28 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Handling
 {
-    class Menu
+    static class Menu
     {
-        private int choise;
-        public int Choise 
-        { 
-            get => choise;
-            private set
-            {
-                if (value >= 1 && value <= 9) { choise = value; }
-                else
-                {
-                    choise = 0;
-                    Support.WriteCol("Niepoprawny wybor!", "DY");
-                    Support.PressEnter();
-                }
-            }
-        }
-
-        public int MainList()
+        public static int MainList()
         {
             Support.WriteCol("--- MENU ---", "G");
             Console.WriteLine();
@@ -40,21 +22,13 @@ namespace Handling
             Console.WriteLine("9. Wyjscie z programu");
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("Twoj wybor: ");
 
-            try { Choise = int.Parse(Console.ReadLine()); }
-            catch 
-            { 
-                Support.WriteCol("Zly format", "R");
-                choise = 0;
-                Support.PressEnter();
-            }
-            Console.ResetColor();
+            int choise = GetChoise(1,9);            
             Console.Clear();
             return choise;
         }
 
-        public int ConditionalList()
+        public static int ConditionalList()
         {
             Support.WriteCol("--- MENU WARUNKOW ---", "G");
             Console.WriteLine();
@@ -65,39 +39,62 @@ namespace Handling
             Console.WriteLine("4. Przebiegu");
             Console.WriteLine("5. Rodzaju skrzyni biegów");
             Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Green;
 
-            do
+            return GetChoise(1, 5);
+        }
+
+        public static int SortingList()
+        {
+            Support.WriteCol("--- MENU SORTOWANIA ---", "G");
+            Console.WriteLine();
+            Console.WriteLine("Sortuj wedlug:");
+            Console.WriteLine("1. Marki alfabetycznie");
+            Console.WriteLine("2. Modelu alfabetycznie");
+            Console.WriteLine("3. Roku produkcji");
+            Console.WriteLine("4. Pojemnosci silnika");
+            Console.WriteLine("5. Przebiegu");
+            Console.WriteLine("6. Rodzaju skrzyni biegów");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Green;
+
+            return GetChoise(1, 6);
+        }
+
+        public static int SortingDeOrIn()
+        {
+            Support.WriteCol("0 - rosnaco, 1 - malejaco","G");
+            return GetChoise(0, 1);
+        }
+        
+        public static int GetChoise(int a, int b)
+        {
+            int choise;
+
+            while (true)
             {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write("Twoj wybor: ");
+                try
+                {                  
+                    Console.Write("Twoj wybor: ");
+                    choise = int.Parse(Console.ReadLine());
 
-                try 
-                { 
-                    Choise = int.Parse(Console.ReadLine()); 
+                    if (choise < a || choise > b)
+                    {
+                        Support.WriteCol("Niewlasciwy wybor!", "DY");
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
                 catch
                 {
-                    Support.WriteCol("Zly format!", "R");
-                    choise = 0;
-                    Support.PressEnter();
+                    Support.WriteCol("Niepoprawny format", "R");
                 }
-                Console.Clear();
+            }
 
-                if(choise < 1 || choise > 5) 
-                { 
-                    Support.WriteCol("Niepoprawny wybor", "DY"); 
-                }
-
-            } while (choise < 1 || choise > 5);
-            
+            Console.ResetColor();
             return choise;
-        }
-        
-
-
-        public Menu(int choise = 0)
-        {
-            this.choise = choise;
         }
     }
 }
